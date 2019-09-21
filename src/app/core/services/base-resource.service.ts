@@ -1,15 +1,16 @@
-import {BaseResourceModel} from '../models/base-resource.model';
 import {Injector} from '@angular/core';
+import {BaseResourceModel} from '../models/base-resource.model';
+import {HttpClient} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {map, catchError} from 'rxjs/operators';
-import {HttpClient} from '@angular/common/http';
+
 
 
 
 export abstract class BaseResourceService<T extends BaseResourceModel> {
 
   protected http: HttpClient;
-  protected baseUrl: 'http://127.0.0.1:8000/api/mp';
+  protected baseUrl = 'http://127.0.0.1:8000/api/mp';
 
   protected constructor(
     protected apiPath: string,
@@ -20,7 +21,6 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
   }
 
   protected handleError(error: any): Observable<any> {
-    console.log(`Erro na requisição => ${error}`);
     return throwError(error);
   }
 
@@ -35,14 +35,14 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
   }
 
   create(resource: T): Observable<T> {
-    return this.http.post(`${this.baseUrl}/${this.apiPath}`, resource).pipe(
+    return this.http.post(`${this.baseUrl}/${this.apiPath}/`, resource).pipe(
       map(this.jsonDataToResource.bind(this)),
       catchError(this.handleError),
     );
   }
 
   update(resource: T): Observable<T> {
-    const url = `${this.baseUrl}/${this.apiPath}/${resource.id}`;
+    const url = `${this.baseUrl}/${this.apiPath}/${resource.id}/`;
     return this.http.put(url, resource).pipe(
       map(() => resource),
       catchError(this.handleError),
@@ -50,7 +50,7 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
   }
 
   delete(id: number): Observable<any> {
-    const url = `${this.baseUrl}/${this.apiPath}/${id}`;
+    const url = `${this.baseUrl}/${this.apiPath}/${id}/`;
     return this.http.delete(url).pipe(
       map(() => true),
       catchError(this.handleError),
@@ -58,14 +58,14 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
   }
 
   getAll(): Observable<T[]> {
-    return this.http.get(`${this.baseUrl}/${this.apiPath}`).pipe(
+    return this.http.get(`${this.baseUrl}/${this.apiPath}/`).pipe(
       map(this.jsonDataToResources.bind(this)),
       catchError(this.handleError)
     );
   }
 
   getById(id: number): Observable<T> {
-    const url = `${this.baseUrl}/${this.apiPath}/${id}`;
+    const url = `${this.baseUrl}/${this.apiPath}/${id}/`;
     return this.http.get(url).pipe(
       map(this.jsonDataToResource.bind(this)),
       catchError(this.handleError)

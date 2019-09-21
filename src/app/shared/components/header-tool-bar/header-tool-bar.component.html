@@ -1,15 +1,15 @@
 <mat-toolbar color="primary" class="mat-elevation-z2">
   <span>MusicPlayce UI</span>
   <span class="spacer"></span>
-  <button (click)="goToHome()"  mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu-user">
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu-user">
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>
+    <button (click)="goToHome()"  mat-menu-item>
       <mat-icon>people_alt</mat-icon>
       <span>Bandas</span>
     </button>
-    <button mat-menu-item>
+    <button (click)="goToAddBand()" mat-menu-item>
       <mat-icon>group_add</mat-icon>
       <span>Adicionar Banda</span>
     </button>

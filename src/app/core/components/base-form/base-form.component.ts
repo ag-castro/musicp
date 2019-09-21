@@ -41,7 +41,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
 
   submitForm() {
     this.submittingForm = true;
-    this.currentAction === 'new'
+    this.currentAction === 'nova'
       ? this.createResource()
       : this.updateResource();
   }
@@ -49,13 +49,14 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
   protected abstract buildResourceForm(): void;
 
   protected setCurrentAction() {
-    this.route.snapshot.url[0].path === 'new'
-      ? this.currentAction = 'new'
-      : this.currentAction = 'edit';
+
+    this.route.snapshot.url[this.route.snapshot.url.length - 1].path === 'nova'
+      ? this.currentAction = 'nova'
+      : this.currentAction = 'editar';
   }
 
   protected loadResource() {
-    if (this.currentAction === 'edit') {
+    if (this.currentAction === 'editar') {
       this.route.paramMap.pipe(
         switchMap(params => this.resourceService.getById(+params.get('id')))
       ).subscribe(
@@ -69,7 +70,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
   }
 
   protected setPageTitle() {
-    this.currentAction === 'new'
+    this.currentAction === 'nova'
       ? this.pageTitle = this.creationPageTitle()
       : this.pageTitle = this.editionPageTitle();
   }
@@ -101,10 +102,10 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
   }
 
   protected actionsForSuccess(resource: T, msg: string) {
-    const baseComponentPath: string = this.route.snapshot.parent.url[0].path;
-    this.router.navigateByUrl(baseComponentPath, {skipLocationChange: true})
+    const baseComponentPath: string = this.route.snapshot.url[0].path;
+    this.router.navigateByUrl('/', {skipLocationChange: true})
       .then(
-        () => this.router.navigate([baseComponentPath, resource.id, 'edit'])
+        () => this.router.navigate([baseComponentPath, resource.id, 'editar'])
       );
   }
 

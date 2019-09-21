@@ -5,13 +5,13 @@ import {BaseResourceService} from '../../services/base-resource.service';
 
 export abstract class BaseResourceListComponent<T extends BaseResourceModel> implements OnInit {
 
-  resouces: T[] = [];
+  resources: T[] = [];
 
   protected constructor(private resourceService: BaseResourceService<T>) { }
 
   ngOnInit() {
     this.resourceService.getAll().subscribe(
-      resources => this.resouces = resources.sort((a, b) => b.id - a.id),
+      resources => this.resources = resources.sort((a, b) => b.id - a.id),
       error => alert('Erro ao carregar registros')
     );
   }
@@ -20,9 +20,12 @@ export abstract class BaseResourceListComponent<T extends BaseResourceModel> imp
     const mustDelete = confirm('Deseja realmente excluir esse registro?');
     if (mustDelete) {
       this.resourceService.delete(resource.id).subscribe(
-        () => this.resouces = this.resouces.filter(
-        item => item !== resource
-        ),
+        () => {
+          this.resources = this.resources.filter(
+            item => item !== resource
+          );
+          this.ngOnInit();
+      },
         () => alert('Erro ao tentar excluir registro')
       );
     }

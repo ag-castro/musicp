@@ -1,1 +1,41 @@
-<p>band-form works!</p>
+<app-header-tool-bar></app-header-tool-bar>
+<div class="wrapper">
+  <mat-card class="container">
+    <ng-container *ngIf="!submittingForm || !resourceForm; else loadingData">
+    <mat-card-header>
+      <mat-card-title>{{pageTitle}}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="resourceForm" (submit)="submitForm()">
+        <mat-form-field>
+          <input matInput placeholder="Nome da Banda" id="name" type="text" formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Estilo Musical" id="musicStyle" type="text" formControlName="musicStyle">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Local de Origem" id="originLocal" type="text" formControlName="originLocal">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Ano de Formação" id="formationAt" type="number" formControlName="formationAt">
+        </mat-form-field>
+        <div>
+          <button mat-raised-button color="primary" [disabled]="submittingForm || resourceForm.invalid" type="submit">
+            <mat-icon>{{btn.icon}}</mat-icon>
+            <span>{{btn.text}}</span>
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+    </ng-container>
+  </mat-card>
+
+</div>
+<ng-template #loadingData>
+  <mat-spinner
+    class="spinner"
+    diameter="50"
+    strokeWidth="3">
+  </mat-spinner>
+</ng-template>

@@ -18,7 +18,7 @@ export class HeaderToolBarComponent implements OnInit {
   }
 
   goToAddBand() {
-    this.router.navigate(['/add-band']);
+    this.router.navigate(['/banda/nova']);
   }
 
 }
