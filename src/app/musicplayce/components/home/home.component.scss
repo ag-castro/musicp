@@ -1,0 +1,10 @@
+.wrapper {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  padding: 1rem;
+
+  .container{
+    width: 80vw;
+  }
+}
