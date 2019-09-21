@@ -1,6 +1,6 @@
 # MusicplayceUi
 
-#### API URL Demo: [mp.centraldobrasil.club](https://www.mp.centraldobrasil.club)
+#### API URL Demo: [mp.centraldobrasil.club](https://www.mp.centraldobrasil.club/api/mp)
 
 #### UI URL Demo: [centraldobrasil.club](https://www.centraldobrasil.club)
 
