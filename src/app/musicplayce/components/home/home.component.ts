@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TrackService } from './../band/services/track.service';
 
 @Component({
   selector: 'app-home',
@@ -8,15 +7,9 @@ import { TrackService } from './../band/services/track.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(
-    trackList: TrackService,
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  getTrackList() {
-    this.trackList.getAll()
   }
 
 }
