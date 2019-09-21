@@ -1,5 +1,11 @@
 # MusicplayceUi
 
+#### API URL Demo: [mp.centraldobrasil.club](https://www.mp.centraldobrasil.club)
+
+#### UI URL Demo: [centraldobrasil.club](https://www.centraldobrasil.club)
+
+###### Por: André Gustavo Castro - andregustavo.castro@gmail.com
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.5.
 
 ## Development server
