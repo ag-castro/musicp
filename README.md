@@ -2,7 +2,7 @@
 
 #### API URL Demo: [mp.centraldobrasil.club](https://www.mp.centraldobrasil.club/api/mp)
 
-#### UI URL Demo: [centraldobrasil.club](https://www.centraldobrasil.club)
+#### UI URL Demo: [centraldobrasil.club](https://centraldobrasil.club)
 
 ###### Por: André Gustavo Castro - andregustavo.castro@gmail.com
 
